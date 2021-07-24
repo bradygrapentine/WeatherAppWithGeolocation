@@ -1,3 +1,3 @@
-export function UserPage() {
+export function SignupPage() {
 return <p>Under Construction...</p>
 }
