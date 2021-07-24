@@ -16,9 +16,6 @@ namespace WeatherAppWithGeolocation.Models
         [Required]
         public string Username { get; set; }
 
-        [Required]
-        public string Email { get; set; }
-
 
         public string PhotoURL { get; set; }
 

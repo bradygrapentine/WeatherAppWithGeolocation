@@ -15,7 +15,7 @@ export function App() {
           <LandingPage />
         </Route>
         <Route exact path="/User/:id">
-        <UserPage />
+          <UserPage />
         </Route>
         <Route exact path="/Login">
           <LoginPage />
