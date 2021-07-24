@@ -9,11 +9,11 @@ export function App() {
     <>
       <Switch>
         <Route exact path="/">
-          {/* <PetList /> */}
-        </Route>
-        <Route exact path="/UserDemo">
           <UserPage />
         </Route>
+        {/* <Route exact path="/User/:id"> */}
+        {/* <UserPage /> */}
+        {/* </Route> */}
         {/* <Route exact path="/:id">
           {/* <PetPage />
         </Route> */}

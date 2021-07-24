@@ -3,9 +3,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 
 export function UserPage() {
-  let [location, setLocation] = useState(
-    localStorage.getItem('location') || 'Tampa'
-  )
+  let [location, setLocation] = useState(localStorage.getItem('location') || '')
   let [temp, setTemp] = useState(null)
   let [feelsLike, setFeelsLike] = useState(null)
   let [humidity, setHumidity] = useState(null)
@@ -139,26 +137,50 @@ export function UserPage() {
   return (
     <main>
       <h1>Forecast Finder</h1>
-      <input
-        type="text"
-        placeholder="Zip-code or City Name"
-        value={location}
-        // onChange={(event) => setLocation(event.target.value)}
-        onChange={(event) => updateLocation(event.target.value)}
-      />
-      <button className="search" onClick={loadWeather}>
-        Get Forecast
-      </button>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault()
+          loadWeather()
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Zip-code or City Name"
+          value={location}
+          // onChange={(event) => setLocation(event.target.value)}
+          onChange={(event) => updateLocation(event.target.value)}
+        />
+        <input type="submit" className="search" value="Get Forecast" />
+      </form>
       <section className="weatherDisplay">
         <ul>
           <h4>{cityName || location}'s Current Weather</h4>
-          <li> Temperature: {convertToFahrenheit(temp)}℉ </li>
-          <li> Feels Like: {convertToFahrenheit(feelsLike)}℉</li>
-          <li> Humidity: {humidity}%</li>
-          <li> Wind Speed: {windSpeed} meters/second</li>
-          <li> Gust Speed: {gust} meters/second</li>
-          <li> Wind Direction (in degrees): {windDirection}°</li>
-          <li> Cloud Coverage: {clouds}%</li>
+          <div>
+            <label> Temperature:</label>
+            <li> {convertToFahrenheit(temp)}℉ </li>
+          </div>
+          <div>
+            <label> Feels Like:</label>
+            <li>{convertToFahrenheit(feelsLike)}℉</li>
+          </div>
+          <div>
+            <label> Humidity:</label>
+            <li>{humidity}%</li>
+          </div>
+          <div>
+            <label> Wind Speed:</label>
+            <li>{windSpeed} meters/second</li>
+          </div>
+          <div>
+            <label> Gust Speed:</label> <li>{gust} meters/second</li>
+          </div>
+          <div>
+            <label> Wind Direction (in degrees): </label>{' '}
+            <li>{windDirection}°</li>
+          </div>
+          <div>
+            <label> Cloud Coverage: </label> <li>{clouds}%</li>
+          </div>
           {/* <li> Rainfall in Last Hour (in mm): {rain['1h'] || 'N/A'}</li>
           <li> Snowfall in Last Hour (in mm): {snow['1h'] || 'N/A'}</li> */}
         </ul>
