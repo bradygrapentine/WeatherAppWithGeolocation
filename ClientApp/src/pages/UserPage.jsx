@@ -156,6 +156,7 @@ export function UserPage() {
           <Link to="/">User's Forecasts</Link>
         </h1>
         <div className="loginAndSignup">
+          <img alt="Avatar" />
           <Link to="/SignUp" className="signup">
             Sign Out
           </Link>
@@ -178,23 +179,26 @@ export function UserPage() {
   }, [])
 
   return (
-    <main>
-      <UserPageHeader />
-      <form
-        onSubmit={(event) => {
-          event.preventDefault()
-          loadWeather()
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Zip-code or City Name"
-          value={location}
-          onChange={(event) => updateLocation(event.target.value)}
-        />
-        <input type="submit" className="search" value="Get Forecast" />
-      </form>
-      <WeatherDisplay />
-    </main>
+    <>
+      <main>
+        <UserPageHeader />
+        <form
+          onSubmit={(event) => {
+            event.preventDefault()
+            loadWeather()
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Zip-code or City Name"
+            value={location}
+            onChange={(event) => updateLocation(event.target.value)}
+          />
+          <input type="submit" className="search" value="Get Forecast" />
+        </form>
+        <WeatherDisplay />
+      </main>
+      <footer></footer>
+    </>
   )
 }

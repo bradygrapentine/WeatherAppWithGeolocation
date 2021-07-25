@@ -179,23 +179,26 @@ export function LandingPage() {
   }, [])
 
   return (
-    <main>
-      <LandingPageHeader />
-      <form
-        onSubmit={(event) => {
-          event.preventDefault()
-          loadWeather()
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Zip-code or City Name"
-          value={location}
-          onChange={(event) => updateLocation(event.target.value)}
-        />
-        <input type="submit" className="search" value="Get Forecast" />
-      </form>
-      <WeatherDisplay />
-    </main>
+    <>
+      <main>
+        <LandingPageHeader />
+        <form
+          onSubmit={(event) => {
+            event.preventDefault()
+            loadWeather()
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Zip-code or City Name"
+            value={location}
+            onChange={(event) => updateLocation(event.target.value)}
+          />
+          <input type="submit" className="search" value="Get Forecast" />
+        </form>
+        <WeatherDisplay />
+      </main>
+      <footer></footer>
+    </>
   )
 }

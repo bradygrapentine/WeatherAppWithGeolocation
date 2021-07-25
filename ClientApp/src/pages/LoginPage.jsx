@@ -17,15 +17,18 @@ export function LoginPage() {
   }
 
   return (
-    <main>
-      <LoginPageHeader />
-      <form className="login">
-        <p className="login">Username</p>
-        <input className="login" type="text" />
-        <p className="login">Password</p>
-        <input className="login" type="text" />
-        <input className="loginsubmit" type="submit" value="Log In" />
-      </form>
-    </main>
+    <>
+      <main>
+        <LoginPageHeader />
+        <form className="login">
+          <p className="login">Username</p>
+          <input className="login" type="text" />
+          <p className="login">Password</p>
+          <input className="login" type="text" />
+          <input className="loginsubmit" type="submit" value="Log In" />
+        </form>
+      </main>
+      <footer></footer>
+    </>
   )
 }
