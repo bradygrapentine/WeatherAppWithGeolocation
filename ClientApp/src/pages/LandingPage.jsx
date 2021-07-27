@@ -80,6 +80,20 @@ export function LandingPage() {
   function WeatherDisplay() {
     return (
       <section className="weatherDisplay">
+        <form
+          onSubmit={(event) => {
+            event.preventDefault()
+            loadWeather()
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Zip-code or City Name"
+            value={location}
+            onChange={(event) => updateLocation(event.target.value)}
+          />
+          <input type="submit" className="search" value="Get Forecast" />
+        </form>
         <ul>
           <h4>{cityName || location}'s Current Weather</h4>
           <div>
@@ -182,20 +196,6 @@ export function LandingPage() {
     <>
       <main>
         <LandingPageHeader />
-        <form
-          onSubmit={(event) => {
-            event.preventDefault()
-            loadWeather()
-          }}
-        >
-          <input
-            type="text"
-            placeholder="Zip-code or City Name"
-            value={location}
-            onChange={(event) => updateLocation(event.target.value)}
-          />
-          <input type="submit" className="search" value="Get Forecast" />
-        </form>
         <WeatherDisplay />
       </main>
       <footer></footer>

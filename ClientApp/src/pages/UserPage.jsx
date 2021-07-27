@@ -82,6 +82,20 @@ export function UserPage() {
   function WeatherDisplay() {
     return (
       <section className="weatherDisplay">
+        <form
+          onSubmit={(event) => {
+            event.preventDefault()
+            loadWeather()
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Zip-code or City Name"
+            value={location}
+            onChange={(event) => updateLocation(event.target.value)}
+          />
+          <input type="submit" className="search" value="Get Forecast" />
+        </form>
         <ul>
           <h4>{cityName || location}'s Current Weather</h4>
           <div>
@@ -101,7 +115,7 @@ export function UserPage() {
             <li>{windSpeed} meters/second</li>
           </div>
           <div>
-            <label> Gust Speed:</label> <li>{gust} meters/second</li>
+            <label> Gust Speed:</label> <li>{gust || '0'} meters/second</li>
           </div>
           <div>
             <label> Wind Direction (in degrees): </label>{' '}
@@ -121,6 +135,13 @@ export function UserPage() {
         </ul>
         {/* <li> Wind Direction: {convertToNESW(windDirection)}</li>
         Wind Speed: {convertToMPH(windSpeed)} miles/hour */}
+        <div className="userPageInner">
+          <h4 className="Saved1">Saved Locations</h4>
+          <h4 className="Saved">{cityName || location}</h4>
+          <h4 className="Saved">{cityName || location}</h4>
+          <h4 className="Saved">{cityName || location}</h4>
+          <h4 className="Saved">{cityName || location}</h4>
+        </div>
       </section>
     )
   }
@@ -152,11 +173,9 @@ export function UserPage() {
   function UserPageHeader() {
     return (
       <header>
-        <h1 className="user">
-          <Link to="/">User's Forecasts</Link>
-        </h1>
+        <h1 className="user">Your Forecasts</h1>
         <div className="loginAndSignup">
-          <img alt="Avatar" />
+          <img alt="Add Avatar" />
           <Link to="/SignUp" className="signup">
             Sign Out
           </Link>
@@ -182,21 +201,9 @@ export function UserPage() {
     <>
       <main>
         <UserPageHeader />
-        <form
-          onSubmit={(event) => {
-            event.preventDefault()
-            loadWeather()
-          }}
-        >
-          <input
-            type="text"
-            placeholder="Zip-code or City Name"
-            value={location}
-            onChange={(event) => updateLocation(event.target.value)}
-          />
-          <input type="submit" className="search" value="Get Forecast" />
-        </form>
-        <WeatherDisplay />
+        <div className="userPage">
+          <WeatherDisplay />
+        </div>
       </main>
       <footer></footer>
     </>
