@@ -15,7 +15,7 @@ body {
 main {
   background-color: rgb(18, 18, 255);
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
@@ -159,7 +159,7 @@ form {
   align-items: center;
   justify-content: center;
   padding: 0rem;
-  margin: 0.5rem 1rem;
+  margin: 2rem 1rem 0rem 1rem;
 }
 
 input.search:hover {
@@ -189,7 +189,7 @@ ul {
   border-top-width: 0px;
   margin: 1rem 0.5rem 1rem 0.5rem;
   width: fit-content;
-  height: 100%;
+  height: fit-content;
   box-shadow: 0px 0px 1px 0.5px rgb(0, 0, 85);
 }
 
@@ -390,9 +390,10 @@ div.userPageInner ul {
 
 div.userPage {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  flex-direction: column;
   width: 100vw;
   height: 80%;
 }

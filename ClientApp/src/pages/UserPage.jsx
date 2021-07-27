@@ -81,68 +81,56 @@ export function UserPage() {
 
   function WeatherDisplay() {
     return (
-      <section className="weatherDisplay">
-        <form
-          onSubmit={(event) => {
-            event.preventDefault()
-            loadWeather()
-          }}
-        >
-          <input
-            type="text"
-            placeholder="Zip-code or City Name"
-            value={location}
-            onChange={(event) => updateLocation(event.target.value)}
-          />
-          <input type="submit" className="search" value="Get Forecast" />
-        </form>
-        <ul>
-          <h4>{cityName || location}'s Current Weather</h4>
-          <div>
-            <label> Temperature:</label>
-            <li> {convertToFahrenheit(temp)}℉ </li>
-          </div>
-          <div>
-            <label> Feels Like:</label>
-            <li>{convertToFahrenheit(feelsLike)}℉</li>
-          </div>
-          <div>
-            <label> Humidity:</label>
-            <li>{humidity}%</li>
-          </div>
-          <div>
-            <label> Wind Speed:</label>
-            <li>{windSpeed} meters/second</li>
-          </div>
-          <div>
-            <label> Gust Speed:</label> <li>{gust || '0'} meters/second</li>
-          </div>
-          <div>
-            <label> Wind Direction (in degrees): </label>{' '}
-            <li>{windDirection}°</li>
-          </div>
-          <div>
-            <label> Cloud Coverage: </label> <li>{clouds}%</li>
-          </div>
-          <div>
-            <label> Rainfall in Last Hour (in mm): </label>{' '}
-            <li>{rain['1h'] || 'N/A'}</li>
-          </div>
-          <div>
-            <label> Snowfall in Last Hour (in mm):</label>{' '}
-            <li>{snow['1h'] || 'N/A'}</li>
-          </div>
-        </ul>
-        {/* <li> Wind Direction: {convertToNESW(windDirection)}</li>
+      <>
+        <section className="weatherDisplay">
+          <ul>
+            <h4>{cityName || location}'s Current Weather</h4>
+            <div>
+              <label> Temperature:</label>
+              <li> {convertToFahrenheit(temp)}℉ </li>
+            </div>
+            <div>
+              <label> Feels Like:</label>
+              <li>{convertToFahrenheit(feelsLike)}℉</li>
+            </div>
+            <div>
+              <label> Humidity:</label>
+              <li>{humidity}%</li>
+            </div>
+            <div>
+              <label> Wind Speed:</label>
+              <li>{windSpeed} meters/second</li>
+            </div>
+            <div>
+              <label> Gust Speed:</label> <li>{gust || '0'} meters/second</li>
+            </div>
+            <div>
+              <label> Wind Direction (in degrees): </label>{' '}
+              <li>{windDirection}°</li>
+            </div>
+            <div>
+              <label> Cloud Coverage: </label> <li>{clouds}%</li>
+            </div>
+            <div>
+              <label> Rainfall in Last Hour (in mm): </label>{' '}
+              <li>{rain['1h'] || 'N/A'}</li>
+            </div>
+            <div>
+              <label> Snowfall in Last Hour (in mm):</label>{' '}
+              <li>{snow['1h'] || 'N/A'}</li>
+            </div>
+          </ul>
+          {/* <li> Wind Direction: {convertToNESW(windDirection)}</li>
         Wind Speed: {convertToMPH(windSpeed)} miles/hour */}
-        <div className="userPageInner">
-          <h4 className="Saved1">Saved Locations</h4>
-          <h4 className="Saved">{cityName || location}</h4>
-          <h4 className="Saved">{cityName || location}</h4>
-          <h4 className="Saved">{cityName || location}</h4>
-          <h4 className="Saved">{cityName || location}</h4>
-        </div>
-      </section>
+          <div className="userPageInner">
+            <h4 className="Saved1">Saved Locations</h4>
+            <h4 className="Saved">{cityName || location}</h4>
+            <h4 className="Saved">{cityName || location}</h4>
+            <h4 className="Saved">{cityName || location}</h4>
+            <h4 className="Saved">{cityName || location}</h4>
+          </div>
+        </section>
+      </>
     )
   }
 
@@ -199,9 +187,23 @@ export function UserPage() {
 
   return (
     <>
+      <UserPageHeader />
       <main>
-        <UserPageHeader />
         <div className="userPage">
+          <form
+            onSubmit={(event) => {
+              event.preventDefault()
+              loadWeather()
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Zip-code or City Name"
+              value={location}
+              onChange={(event) => updateLocation(event.target.value)}
+            />
+            <input type="submit" className="search" value="Get Forecast" />
+          </form>
           <WeatherDisplay />
         </div>
       </main>
