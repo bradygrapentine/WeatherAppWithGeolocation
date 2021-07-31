@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import { logout } from '../auth'
 
 export function UserPage() {
   let [location, setLocation] = useState(
@@ -77,6 +78,11 @@ export function UserPage() {
       //   setCityName('INVALID LOCATION')
       // }
     }
+  }
+
+  function handleLogout() {
+    logout()
+    window.location.assign('/')
   }
 
   function WeatherDisplay() {
@@ -164,9 +170,9 @@ export function UserPage() {
         <h1 className="user">Your Forecasts</h1>
         <div className="loginAndSignup">
           <img alt="Add Avatar" />
-          <Link to="/SignUp" className="signup">
+          <span onClick={handleLogout} className="signup">
             Sign Out
-          </Link>
+          </span>
         </div>
       </header>
     )

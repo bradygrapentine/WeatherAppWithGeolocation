@@ -15,6 +15,13 @@ namespace WeatherAppWithGeolocation.Models
 
         // Add database tables here
 
+        public DbSet<User> Users { get; set; }
+        public DbSet<Location> Locations { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasIndex(user => user.Username).IsUnique();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

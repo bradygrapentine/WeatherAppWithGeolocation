@@ -11,13 +11,13 @@ namespace WeatherAppWithGeolocation.Models
         // ---------------------------------- //
 
         [Required]
-        public string Name { get; set; }
+        public string CityName { get; set; }
 
         [Required]
         public string Zipcode { get; set; }
 
-        public string Longitude { get; set; }
+        // public string Longitude { get; set; }
 
-        public string Latitude { get; set; }
+        // public string Latitude { get; set; }
     }
 }

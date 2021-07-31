@@ -11,9 +11,6 @@ namespace WeatherAppWithGeolocation.Models
         // ---------------------------------- //
 
         [Required]
-        public string Name { get; set; }
-
-        [Required]
         public string Username { get; set; }
 
 
