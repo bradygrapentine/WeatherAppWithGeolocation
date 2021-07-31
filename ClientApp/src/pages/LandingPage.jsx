@@ -12,6 +12,7 @@ export function LandingPage() {
   let [windDirection, setWindDirection] = useState(null)
   let [clouds, setClouds] = useState(null)
   let [snow, setSnow] = useState({})
+
   let [rain, setRain] = useState({})
   let [cityName, setCityName] = useState('')
 
