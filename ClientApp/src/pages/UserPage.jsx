@@ -105,9 +105,6 @@ export function UserPage() {
         <section className="weatherDisplay">
           <ul>
             <h4>{currentLocation.cityName}'s Current Weather</h4>
-            <button onClick={(event) => addLocation(event)}>
-              Add Location
-            </button>
             <div>
               <label> Temperature:</label>
               <li> {convertToFahrenheit(temp)}℉ </li>
@@ -142,15 +139,18 @@ export function UserPage() {
               <label> Snowfall in Last Hour (in mm):</label>{' '}
               <li>{snow['1h'] || 'N/A'}</li>
             </div>
+            <button onClick={(event) => addLocation(event)}>
+              Add to Saved Locations
+            </button>
           </ul>
           {/* <li> Wind Direction: {convertToNESW(windDirection)}</li>
         Wind Speed: {convertToMPH(windSpeed)} miles/hour */}
           <div className="userPageInner">
-            <h4 className="Saved1">Saved Locations</h4>
+            <h4 className="locations">Saved Locations</h4>
             {userLocations
               ? userLocations.map(function (userLocation) {
                   return (
-                    <>
+                    <div className="savedLocationsContainer">
                       <button
                         value={userLocation.cityName}
                         onClick={function (event) {
@@ -166,7 +166,7 @@ export function UserPage() {
                       >
                         Delete
                       </button>
-                    </>
+                    </div>
                   )
                 })
               : null}
