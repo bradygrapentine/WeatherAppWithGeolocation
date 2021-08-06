@@ -27,6 +27,8 @@ export function UserPage() {
     zoom: 8,
   })
 
+  // gotta fix search to eliminate duplicate locations
+
   async function searchForWeather() {
     if (isValidZip(newLocation)) {
       const response = await axios.get(
