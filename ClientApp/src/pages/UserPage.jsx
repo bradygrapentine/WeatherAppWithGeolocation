@@ -2,23 +2,30 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { logout, isLoggedIn, authHeader, getUserId } from '../auth'
+import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl'
 
 export function UserPage() {
-  let [currentLocation, setCurrentLocation] = useState({})
-  let [temp, setTemp] = useState(null)
-  let [feelsLike, setFeelsLike] = useState(null)
-  let [humidity, setHumidity] = useState(null)
-  let [windSpeed, setWindSpeed] = useState(null)
-  let [gust, setGust] = useState(null)
-  let [windDirection, setWindDirection] = useState(null)
-  let [clouds, setClouds] = useState(null)
-  let [snow, setSnow] = useState({})
-  let [rain, setRain] = useState({})
-  let [newLocation, setNewLocation] = useState(
+  const [currentLocation, setCurrentLocation] = useState({})
+  const [temp, setTemp] = useState(null)
+  const [feelsLike, setFeelsLike] = useState(null)
+  const [humidity, setHumidity] = useState(null)
+  const [windSpeed, setWindSpeed] = useState(null)
+  const [gust, setGust] = useState(null)
+  const [windDirection, setWindDirection] = useState(null)
+  const [clouds, setClouds] = useState(null)
+  const [snow, setSnow] = useState({})
+  const [rain, setRain] = useState({})
+  const [newLocation, setNewLocation] = useState(
     localStorage.getItem('savedLocationUser') || ''
   )
-  // let [cityName, setCityName] = useState('')
-  let [userLocations, setUserLocations] = useState([])
+  // const [cityName, setCityName] = useState('')
+  const [userLocations, setUserLocations] = useState([])
+
+  const [viewport, setViewport] = useState({
+    latitude: 27.77101804911986,
+    longitude: -82.66090611749074,
+    zoom: 8,
+  })
 
   async function searchForWeather() {
     if (isValidZip(newLocation)) {
@@ -47,6 +54,11 @@ export function UserPage() {
         if (response.data.snow) {
           setSnow(response.data.snow)
         }
+        setViewport({
+          latitude: response.data.coord.lat,
+          longitude: response.data.coord.lon,
+          zoom: 8,
+        })
       }
     } else {
       const response = await axios.get(
@@ -78,6 +90,11 @@ export function UserPage() {
         } else {
           setSnow({})
         }
+        setViewport({
+          latitude: response.data.coord.lat,
+          longitude: response.data.coord.lon,
+          zoom: 8,
+        })
       }
       // else if (response.status == 400 || response.status == 404) {
       //   setTemp(null)
@@ -206,6 +223,11 @@ export function UserPage() {
       } else {
         setSnow({})
       }
+      setViewport({
+        latitude: response.data.coord.lat,
+        longitude: response.data.coord.lon,
+        zoom: 8,
+      })
     }
   }
 
@@ -303,6 +325,11 @@ export function UserPage() {
       } else {
         setSnow({})
       }
+      setViewport({
+        latitude: response.data.coord.lat,
+        longitude: response.data.coord.lon,
+        zoom: 8,
+      })
     }
 
     if (locationsResponse.ok) {
@@ -328,7 +355,8 @@ export function UserPage() {
   return (
     <>
       <UserPageHeader />
-      <main>
+
+      <main className="user">
         <div className="userPage">
           <form
             onSubmit={(event) => {
@@ -346,6 +374,20 @@ export function UserPage() {
           </form>
           <WeatherDisplay />
         </div>
+        <section className="map">
+          <ReactMapGL
+            {...viewport}
+            style={{ position: 'absolute' }}
+            width="100%"
+            height="100%"
+            onViewportChange={setViewport}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          >
+            <div style={{ position: 'absolute', left: 10 }}>
+              <NavigationControl />
+            </div>
+          </ReactMapGL>
+        </section>
       </main>
       <footer></footer>
     </>

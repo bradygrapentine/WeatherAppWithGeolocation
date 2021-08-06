@@ -18,3 +18,4 @@ namespace WeatherAppWithGeolocation.Models
         public double Longitude { get; set; }
     }
 }
+
