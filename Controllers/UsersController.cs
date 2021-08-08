@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using WeatherAppWithGeolocation.Models;
-
 namespace WeatherAppWithGeolocation.Controllers
 {
 
@@ -20,6 +21,25 @@ namespace WeatherAppWithGeolocation.Controllers
         {
             _context = context;
         }
+
+        // [HttpGet]
+        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        // public async Task<ActionResult<string>> GetUserPhotoURL()
+        // {
+        //     // Find the location in the database using `FindAsync` to look it up by id
+        //     User currentUser = await _context.Users.FindAsync(GetCurrentUserId());
+
+
+        //     // If we didn't find anything, we receive a `null` in return
+        //     if (currentUser == null)
+        //     {
+        //         // Return a `404` response to the client indicating we could not find a location with this id
+        //         return NotFound();
+        //     }
+
+        //     //  Return the location as a JSON object.
+        //     return currentUser.PhotoURL;
+        // }
 
 
         // POST: api/Users
@@ -60,5 +80,11 @@ namespace WeatherAppWithGeolocation.Controllers
         // {
         //     return _context.Users.Any(user => user.Id == id);
         // }
+
+        private int GetCurrentUserId()
+        {
+            // Get the User Id from the claim and then parse it as an integer.
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
+        }
     }
 }

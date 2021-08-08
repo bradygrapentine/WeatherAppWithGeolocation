@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { logout, isLoggedIn, authHeader, getUserId } from '../auth'
+import { logout, isLoggedIn, authHeader, getUserId, getUser } from '../auth'
 import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl'
 
 export function UserPage() {
+  const user = getUser()
   const [currentLocation, setCurrentLocation] = useState({})
   const [temp, setTemp] = useState(null)
   const [feelsLike, setFeelsLike] = useState(null)
@@ -233,6 +234,20 @@ export function UserPage() {
     }
   }
 
+  // async function getUserPhotoURL() {
+  //   if (isLoggedIn()) {
+  //     const response = await fetch('/api/Users', {
+  //       method: 'GET',
+  //       headers: { 'content-type': 'application/json', ...authHeader() },
+  //     })
+  //     if (response.ok) {
+  //       // window.location.assign(`/User/${getUserId()}`)
+  //       console.log(response.json())
+  //       console.log(userLocations)
+  //     }
+  //   }
+  // }
+
   function isValidZip(newLocation) {
     return /^\d{5}(-\d{4})?$/.test(newLocation)
   }
@@ -257,7 +272,16 @@ export function UserPage() {
       <header>
         <h1 className="user">Your Forecasts</h1>
         <div className="loginAndSignup">
-          <img alt="Add Avatar" />
+          {isLoggedIn() && user.photoURL ? (
+            <li className="avatar">
+              <img
+                src={user.photoURL}
+                alt={`${user.fullName}'s Avatar`}
+                // height="16"
+                // width="16"
+              />
+            </li>
+          ) : null}
           <span onClick={handleLogout} className="signup">
             Sign Out
           </span>
