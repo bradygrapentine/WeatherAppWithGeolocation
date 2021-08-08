@@ -24,9 +24,9 @@ namespace WeatherAppWithGeolocation.Controllers
         // and stores it in _context for you to use in your API methods
         public UploadsController(IConfiguration config)
         {
-            CLOUDINARY_CLOUD_NAME = config["bradygcloud"];
-            CLOUDINARY_API_KEY = config["939474954734959"];
-            CLOUDINARY_API_SECRET = config["sjmx2y_e1TqRujMj_Tv4nK27oDk"];
+            CLOUDINARY_CLOUD_NAME = config["CLOUDINARY_CLOUD_NAME"];
+            CLOUDINARY_API_KEY = config["CLOUDINARY_API_KEY"];
+            CLOUDINARY_API_SECRET = config["CLOUDINARY_API_SECRET"];
         }
 
         private readonly HashSet<string> VALID_CONTENT_TYPES = new HashSet<string> {
