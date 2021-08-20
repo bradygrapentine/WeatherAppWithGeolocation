@@ -1,6 +1,6 @@
 # Forecast Finder
 
-![](./ClientApp/public/images/ForecastFinderImg.PNG)
+![](./ClientApp/public/ForecastFinderImg.PNG)
 
 ## [Demo Video](https://www.youtube.com/watch?v=ZdGK_DUpZUM)
 
