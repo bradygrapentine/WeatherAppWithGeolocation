@@ -1,5 +1,7 @@
 # Forecast Finder
 
+![](./ClientApp/public/images/ForecastFinderImg.PNG)
+
 ## [Demo Video](https://www.youtube.com/watch?v=ZdGK_DUpZUM)
 
 **Maps aren't very easy to see on the video...I guess you'll have to make an account to check out that feature ;) **
