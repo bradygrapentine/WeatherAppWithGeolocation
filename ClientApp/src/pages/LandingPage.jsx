@@ -19,7 +19,7 @@ export function LandingPage() {
   async function loadWeather() {
     if (isValidZip(location)) {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=d1ed4e2246ee255a3e6881943fd96a29`
+        `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${process.env.OPEN_WEATHER_API_KEY}`
       )
       if (response.status == 200) {
         console.log(response.data)
@@ -40,7 +40,7 @@ export function LandingPage() {
       }
     } else {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d1ed4e2246ee255a3e6881943fd96a29`
+        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.OPEN_WEATHER_API_KEY}`
       )
       if (response.status == 200) {
         console.log(response.data)
@@ -143,7 +143,7 @@ export function LandingPage() {
 
   // async function loadFromLatAndLong(lat, long) {
   //   const response = await axios.get(
-  //     `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=d1ed4e2246ee255a3e6881943fd96a29`
+  //     `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${process.env.OPEN_WEATHER_API_KEY}`
   //     )
   //     if (response.status == 200) {
   //       set

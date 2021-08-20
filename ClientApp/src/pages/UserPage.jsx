@@ -33,7 +33,7 @@ export function UserPage() {
   async function searchForWeather() {
     if (isValidZip(newLocation)) {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?zip=${newLocation},us&appid=d1ed4e2246ee255a3e6881943fd96a29`
+        `https://api.openweathermap.org/data/2.5/weather?zip=${newLocation},us&appid=${process.env.OPEN_WEATHER_API_KEY}`
       )
       if (response.status === 200) {
         console.log(response.data)
@@ -65,7 +65,7 @@ export function UserPage() {
       }
     } else {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${newLocation}&appid=d1ed4e2246ee255a3e6881943fd96a29`
+        `https://api.openweathermap.org/data/2.5/weather?q=${newLocation}&appid=${process.env.OPEN_WEATHER_API_KEY}`
       )
       if (response.status === 200) {
         console.log(response.data)
@@ -198,7 +198,7 @@ export function UserPage() {
 
   async function searchForWeatherFromSaved(savedLocationUser) {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${savedLocationUser}&appid=d1ed4e2246ee255a3e6881943fd96a29`
+      `https://api.openweathermap.org/data/2.5/weather?q=${savedLocationUser}&appid=${process.env.OPEN_WEATHER_API_KEY}`
     )
     if (response.status === 200) {
       console.log(response.data)
@@ -260,7 +260,7 @@ export function UserPage() {
 
   // async function loadFromLatAndLong(lat, long) {
   //   const response = await axios.get(
-  //     `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=d1ed4e2246ee255a3e6881943fd96a29`
+  //     `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${process.env.OPEN_WEATHER_API_KEY}`
   //     )
   //     if (response.status == 200) {
   //       set
@@ -321,7 +321,7 @@ export function UserPage() {
 
   async function loadWeatherAndLocations() {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${newLocation}&appid=d1ed4e2246ee255a3e6881943fd96a29`
+      `https://api.openweathermap.org/data/2.5/weather?q=${newLocation}&appid=${process.env.OPEN_WEATHER_API_KEY}`
     )
     const locationsResponse = await fetch('/api/Locations', {
       headers: { 'content-type': 'application/json', ...authHeader() },
